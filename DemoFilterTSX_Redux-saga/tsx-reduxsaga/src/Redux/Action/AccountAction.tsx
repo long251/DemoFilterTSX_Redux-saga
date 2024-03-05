@@ -1,25 +1,21 @@
 import { Dispatch } from "redux";
 import { getListAccountAPI } from "../../API/AccountAPI";
-import * as TYPES from "../Const/AccountType"; 
+import * as TYPES from "../Const/AccountType";
 
-
-
-export const actionFetchListAccountAPI:any = (p:number, n:string) => {
+export const actionFetchListAccountAPI: any = (p: number, n: string) => {
   return (dispatch: Dispatch) => {
     return getListAccountAPI(p, n).then((response) => {
+      // console.log("data Action", response);
       dispatch(actionFetchListAccountRedux(response));
+      
       
     });
   };
 };
 
-export const actionFetchListAccountRedux:any = (listAccount:any) => {
- 
-    
+export const actionFetchListAccountRedux: any = (listAccount: any) => {
   return {
     type: TYPES.FETCH_LIST_ACCOUNT,
     payload: listAccount,
   };
 };
-
-

@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
 import AccountReducer from "./AccountReducer";
 
-
 const RootReducers = combineReducers({
-    listAccount: AccountReducer,
+  listAccount: AccountReducer,
 });
-    
 
 export default RootReducers;

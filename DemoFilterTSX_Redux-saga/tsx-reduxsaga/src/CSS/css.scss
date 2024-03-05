@@ -1,0 +1,71 @@
+.Button-Custom--PaginationPrevNext{
+  .Polaris-Button{
+  display: flex;
+  padding: 11px 4px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Base-White, #FFF);
+  color: var(--Text-Color-01, #0B3558);
+text-align: center;
+// font-family: "Google Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+box-shadow: none;
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+.Button-Custom--PaginationCurrentPage{
+  .Polaris-Button{
+      display: flex;
+width: 20px;
+// padding: 11px 0px;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+border-radius: 4px;
+background: var(--Icon-Color-10, #637591);
+color: var(--Base-White, #FFF);
+text-align: center;
+// font-family: "Google Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+box-shadow: none;
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+.Button-Custom--PaginationCurrentTruocSau{
+  .Polaris-Button{
+      display: flex;
+width: 40px;
+// padding: 11px 0px;
+// height: 40px;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+border-radius: 4px;
+background: var(--Base-White, #FFF);
+color: var(--Text-Color-01, #0B3558);
+text-align: center;
+// font-family: "Google Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+box-shadow: none;
+}
+&:focus,
+&:active {
+outline: none;
+}}
+
