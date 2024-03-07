@@ -15,9 +15,12 @@ import  '../../CSS/css.scss';
 
   function AccountTableFilter(props: any) {
     let {currentPage, setCurrentPage} = props;
+
     let stateRedux:any = useSelector((state)=> state);
     let listAccount1 = stateRedux.listAccount;
+
     let total = stateRedux.listAccount.totalPages;
+    
     const [content, setContent] = useState([]);
     useEffect(() => {
       console.log(listAccount1);
@@ -37,7 +40,7 @@ import  '../../CSS/css.scss';
   
     const rowMarkup = content.map(
       (
-        {id, username, departmentName}:any,
+        {id, username, departmentName, gender, createdDate}:any,
         index:number,
       ) => (
         <IndexTable.Row
@@ -53,6 +56,8 @@ import  '../../CSS/css.scss';
           </IndexTable.Cell>
           <IndexTable.Cell>{username}</IndexTable.Cell>
           <IndexTable.Cell>{departmentName}</IndexTable.Cell>
+          <IndexTable.Cell>{gender}</IndexTable.Cell>
+          <IndexTable.Cell>{createdDate}</IndexTable.Cell>
         </IndexTable.Row>
       ),
     );
@@ -70,6 +75,8 @@ import  '../../CSS/css.scss';
             {title: 'id'},
             {title: 'username'},
             {title: 'departmentName'},
+            {title: 'gender'},
+            {title: 'createdDate'},
           ]}
         > 
           {rowMarkup}

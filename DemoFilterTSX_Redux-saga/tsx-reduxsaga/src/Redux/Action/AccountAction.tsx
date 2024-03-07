@@ -2,13 +2,11 @@ import { Dispatch } from "redux";
 import { getListAccountAPI } from "../../API/AccountAPI";
 import * as TYPES from "../Const/AccountType";
 
-export const actionFetchListAccountAPI: any = (p: number, n: string) => {
+export const actionFetchListAccountAPI: any = (p: number, n: string, gen: string, date: string, minD: string, maxD: string)=> {
   return (dispatch: Dispatch) => {
-    return getListAccountAPI(p, n).then((response) => {
+    return getListAccountAPI(p, n, gen, date, minD, maxD).then((response) => {
       // console.log("data Action", response);
       dispatch(actionFetchListAccountRedux(response));
-      
-      
     });
   };
 };

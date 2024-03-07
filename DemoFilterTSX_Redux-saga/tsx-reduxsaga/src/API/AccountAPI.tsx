@@ -5,11 +5,14 @@ import { api } from "./api";
 export const getListAccountAPI = (
   page: number,
   username: string,
-  // createdDate: string
+  gender: string,
+  createdDate: string,
+  minDate: string,
+  maxDate: string
 ) => {
   return api(
     "GET",
-    `accounts?username=${username}&page=${page}&size=5`,
+    `accounts?username=${username}&page=${page}&gender=${gender}&size=5&createdDate=${createdDate}&minDate=${minDate}&maxDate=${maxDate}`,
     null
   );
 };

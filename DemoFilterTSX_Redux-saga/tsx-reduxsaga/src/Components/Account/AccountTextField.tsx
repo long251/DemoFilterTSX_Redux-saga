@@ -1,21 +1,26 @@
-import {TextField} from '@shopify/polaris';
-import {useState, useCallback} from 'react';
-import React from 'react';
-import debounce from 'lodash/debounce';
+import { TextField } from "@shopify/polaris";
+import { useState, useCallback } from "react";
+import React from "react";
+import { debounce } from "lodash";
 function AccountTextFilter(props: any) {
-//   const [value, setValue] = useState('Jaded Pixel');
-let {search, setSearch} = props;
-  const handleChange = useCallback(
-    debounce((newValue: string) => {setSearch(newValue)}, 2000),
+  let { search, setSearch ,onHandleSearch} = props;
+  // const debounceFetchDataFun = useCallback(
+  //   debounce((data: any) => {
+  //     dispatch(orderBuyForYouAction.fetchData(data));
+  //     dispatch(totalOrderAction.fetchData(data));
+  //   }, 300),
+  //   [],
+  // );
+  const handleSearch = (value: string) => {
+    onHandleSearch(value);
+  }
 
-    [setSearch],
-  );
 
   return (
     <TextField
       label="Search Username"
       value={search}
-      onChange={handleChange}
+      onChange={handleSearch}
       autoComplete="off"
     />
   );
