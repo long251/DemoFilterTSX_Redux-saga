@@ -28,7 +28,7 @@ function AccountLogic() {
         maxDate
       )
     );
-  }, 300);
+  }, 1000);
 
   let onHandleSearch = (value: string) => {
     setSearch(value);

@@ -16,26 +16,15 @@ export const actionFetchListAccountAPI:any = (
   //     dispatch(actionFetchListAccountRedux(response));
   //   });
   // };
-  
   type: TYPES.FETCH_LIST_ACCOUNT,
   payload: { p, n, gen, date, minD, maxD },
-
-  // return (dispatch: Dispatch)=>{
-  //   return getListAccountAPI(p, n,gen,date,minD,maxD).then((res)=>{
-  //     dispatchEvent(actionFetchListAccountRedux(res));
-  //   }).catch((err)=>{
-  //     dispatch(actionFetchListError(err))
-  //   })
-  // }
 });
-
 export const actionFetchListAccountRedux: any = (listAccount: Account[]) => {
   return {
-    type: TYPES.FETCH_LIST_ACCOUNT_SUCCESS,
+    type: TYPES.FETCH_LIST_ACCOUNT,
     payload: listAccount,
   };
 };
-
 export const actionFetchListError: any = (error: string) => {
   return {
     type: TYPES.FETCH_LIST_ACCOUNT_ERR,
