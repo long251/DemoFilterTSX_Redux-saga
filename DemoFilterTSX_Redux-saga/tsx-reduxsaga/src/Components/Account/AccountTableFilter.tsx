@@ -89,6 +89,8 @@ import  '../../CSS/css.scss';
             padding: "10px 10px",
             alignItems: "center",
             gap: "5px",
+            width: "80%",
+            margin: "0 auto",
           }}
         >
           {/* nút trờ về trước */}

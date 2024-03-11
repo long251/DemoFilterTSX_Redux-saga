@@ -1,20 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { getListAccountAPI } from "../API/AccountAPI";
 import { Container } from "reactstrap";
-import AccountSearchName from "../Components/Account/AccountSearchName";
 import AccountTableFilter from "../Components/Account/AccountTableFilter";
 import { useDispatch, useSelector } from "react-redux";
-import { get } from "http";
-import { log } from "console";
 import { actionFetchListAccountAPI } from "../Redux/Action/AccountAction";
-import AccountTextFilter from "../Components/Account/AccountTextField";
-import { debounce } from "lodash";
 import AccountSelection from "../Components/Account/AccountSelection";
 import AccountDateNormal from "../Components/Account/AccountDateNormal";
 import AccountAutoComplete from "../Components/Account/AccountAutoComplete";
 import AccountDateRangeNormal from "../Components/Account/AccountDateRangeNormal";
 import { TextField } from "@shopify/polaris";
-
+import  '../CSS/css.scss';
 function AccountLogic() {
   //input text: Search username
   let [search, setSearch] = useState<string>("");
@@ -23,7 +17,7 @@ function AccountLogic() {
     clearTimeout(typingTimeoutRef.current);
   }
   typingTimeoutRef.current = setTimeout(() => {
-    setCurrentPage(1);
+    // setCurrentPage(1);
     dispatchRedux(
       actionFetchListAccountAPI(
         currentPage,
@@ -34,7 +28,7 @@ function AccountLogic() {
         maxDate
       )
     );
-  }, 1000);
+  }, 300);
 
   let onHandleSearch = (value: string) => {
     setSearch(value);
@@ -110,24 +104,6 @@ function AccountLogic() {
     setMaxDate(formattedDate);
     setMaxDate(value);
   };
-  // let fetchData =()=>{
-  //   dispatchRedux(actionFetchListAccountAPI(currentPage, search, gender, createdDate, minDate, maxDate));
-  // }
-  // let debouncedFetchData = useCallback(
-  //   debounce(fetchData, 1000), [search]
-  // )
-  // useEffect(() => {
-  //   dispatchRedux(
-  //     actionFetchListAccountAPI(
-  //       currentPage,
-  //       search,
-  //       gender,
-  //       createdDate,
-  //       minDate,
-  //       maxDate
-  //     )
-  //   );
-  // }, [currentPage, search, gender, createdDate, minDate, maxDate]);
 useEffect(()=>{
   return()=>{
     if(typingTimeoutRef.current){
@@ -136,19 +112,15 @@ useEffect(()=>{
   }
 },[])
   return (
-    <Container>
+    <>
+    <Container className="container">
       {/* bộ lọc theo tên tìm kiếm */}
-      {/* <AccountTextFilter
-      search={search}
-      setSearch={setSearch}
-      onHandleSearch={onHandleSearch}/> */}
       <TextField
         label="Search Username"
         value={search}
         onChange={handleSearchInputChange}
         autoComplete="off"
       />
-
       {/* bộ chọn giới tính */}
       <AccountSelection gender={gender} setGender={setGender} />
 
@@ -174,13 +146,13 @@ useEffect(()=>{
         maxDate={maxDate}
         handleMaxDate={handleMaxDate}
       />
-
-      {/* bảng dữ liệu và phân trang */}
-      <AccountTableFilter
+    </Container>
+    {/* bảng dữ liệu và phân trang */}
+    <AccountTableFilter style={{width: '90%'}}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </Container>
+    </>
   );
 }
 

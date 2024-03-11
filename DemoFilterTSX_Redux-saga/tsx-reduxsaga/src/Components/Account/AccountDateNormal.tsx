@@ -6,7 +6,6 @@ function AccountDateNormal(props:any) {
     let handleChooseDate=(value:string)=>{
         onHandleChooseDate(value);
     }
-    // const formattedDate = format(new Date(createdDate), "dd/MM/yyyy");
     return (
         <TextField
         label="Chọn đúng ngày tạo tài khoản"

@@ -61,7 +61,7 @@ const {gender, setGender} = props;
   );
 
   return (
-    <div style={{height: '225px'}}>
+    <div style={{height: '60px'}}>
       <Autocomplete
         options={options}
         selected={selectedOptions}

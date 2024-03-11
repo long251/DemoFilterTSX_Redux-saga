@@ -69,3 +69,31 @@ box-shadow: none;
 outline: none;
 }}
 
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.container > *{
+  margin-right: 60px;
+}
+.account-text-field{
+  flex: 1;
+}
+.account-Selection{
+  flex: 1;
+}
+.account-DateNormal{
+  flex: 1;
+}
+.account-AutoComplete{
+  flex: 1;
+}
+.account-DateRangeNormal{
+  flex: 1;
+}
+.account-table-filter-container{
+  width: 80%;
+  margin: 0 auto;
+}
