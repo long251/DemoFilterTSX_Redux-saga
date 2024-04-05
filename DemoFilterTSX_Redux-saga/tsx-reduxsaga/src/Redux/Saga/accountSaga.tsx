@@ -17,7 +17,7 @@ function* fetchListAccount(action: any):Generator<any, void, Account[]> {
       const response: Account[] = yield call(getListAccountAPI, p, n, gen, date, minD, maxD);
       yield put(actionFetchListAccountRedux(response));
     } else {
-      console.error('Payload không hợp lệ:', action.payload);
+      // console.error('Payload không hợp lệ:', action.payload);
     }
   } catch (error) {
     console.error("Lỗi:", error);

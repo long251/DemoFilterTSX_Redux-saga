@@ -28,7 +28,7 @@ function AccountLogic() {
         maxDate
       )
     );
-  }, 1000);
+  }, 300);
 
   let onHandleSearch = (value: string) => {
     setSearch(value);
@@ -98,11 +98,14 @@ function AccountLogic() {
   const handleMinDate = (value: string) => {
     const formatedDate = formatDateToYYYYMMDD(parseDateString(value)!);
     setMinDate(formatedDate);
+    setMinDate(value);
+    setCurrentPage(1);
   };
   const handleMaxDate = (value: string) => {
     const formattedDate = formatDateToYYYYMMDD(parseDateString(value)!);
     setMaxDate(formattedDate);
     setMaxDate(value);
+    setCurrentPage(1);
   };
 useEffect(()=>{
   return()=>{
