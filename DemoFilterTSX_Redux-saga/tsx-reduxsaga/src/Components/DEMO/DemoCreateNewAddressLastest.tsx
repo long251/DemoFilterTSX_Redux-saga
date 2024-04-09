@@ -39,66 +39,91 @@ function DemoCreateNewAddressLastest(props: any) {
   ];
   // fake data Sổ địa chỉ
   const [addresses, setAddresses] = useState([
-    {id:1,
+    {
+      id: 1,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hồ Chí Minh',
+      district: 'Thủ Đức',
+      ward: 'An Khánh',
       address: 'Tầng 66, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội, Hà Nội',
       addressType: 'OFFICE',
       statusAddress: 'mặc định',
     },
-    {id:2,
+    {
+      id: 2,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hà Nội',
+      district: 'Nam Từ Liêm',
+      ward: 'Đại Mỗ',
       address: 'Tầng 77, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội',
       addressType: 'HOME',
       statusAddress: '',
     },
-    {id: 3,
+    {
+      id: 3,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hồ Chí Minh',
+      district: 'Thủ Đức',
+      ward: 'An Khánh',
       address: 'Tầng 88, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội',
       addressType: 'OFFICE',
       statusAddress: '',
     },
-    {id:4,
+    {
+      id: 4,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hà Nội',
+      district: 'Nam Từ Liêm',
+      ward: 'Đại Mỗ',
       address: 'Tầng 99, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội',
       addressType: 'OFFICE',
       statusAddress: '',
     },
-    {id:5,
+    {
+      id: 5,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hà Nội',
+      district: 'Nam Từ Liêm',
+      ward: 'Đại Mỗ',
       address: 'Tầng 22, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội',
       addressType: 'OFFICE',
       statusAddress: '',
     },
-    {id:6,
+    {
+      id: 6,
       fullName: 'Nguyễn Tuấn Minh',
       phone: '0943123123',
       email: '',
+      city: 'Hà Nội',
+      district: 'Nam Từ Liêm',
+      ward: 'Đại Mỗ',
       address: 'Tầng 11, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội',
       addressType: 'HOME',
       statusAddress: '',
     },
   ]);
+  
+  let [city, setCity] = useState('');
+  let [district, setDistrict] = useState('');
+  let [ward, setWard] = useState('');
+  let [cityEdit, setCityEdit] = useState('');
+  let [districtEdit, setDistrictEdit] = useState('');
+  let [wardEdit, setWardEdit] = useState('');
+
   const handleDeleteAddress = (index: number) => {
     const newAddresses = [...addresses];
     newAddresses.splice(index, 1);
     setAddresses(newAddresses);
-  };
-  const handleChooseDefaultAddress = (index: any) => {
-    const updatedAddresses = addresses.map((address, i) => ({
-      ...address,
-      statusAddress: i === index ? 'mặc định' : '',
-    }));
-    setAddresses(updatedAddresses);
   };
   //xử lý khi chọn checkbox và nhấn create
   const [defaultAddressIndex, setDefaultAddressIndex] = useState(-1);
@@ -192,11 +217,11 @@ function DemoCreateNewAddressLastest(props: any) {
   const activator = <Button onClick={toggleModal}>Open</Button>;
   //đóng mở Modal Edit
   const [activeE, setActiveE] = useState(true);
-  const toggleModalE = useCallback(()=> setActiveE((activeE) => !activeE), []);
-  const activatorE = <Button onClick={toggleModalE}>OpenE</Button>
+  const toggleModalE = useCallback(() => setActiveE((activeE) => !activeE), []);
+  const activatorE = <Button onClick={toggleModalE}>OpenE</Button>;
 
   let [fullName, setFullName] = useState('');
-  let [fullNameEdit,setFullNameEdit] = useState("");
+  let [fullNameEdit, setFullNameEdit] = useState('');
   let [phone, setPhone] = useState('');
   let [email, setEmail] = useState('');
   let [add, setAdd] = useState('');
@@ -213,28 +238,32 @@ function DemoCreateNewAddressLastest(props: any) {
   //   }
   //   setAddresses([...addresses, addNew])
   // }
-  const findMaxId = (ids: Array<number>)=>{
-let max = ids[0];
-for(let i=1;i<ids.length;i++){
-  if(ids[i]>max){
-    max=ids[i]
-  }
-}return max;
-  }
+  const findMaxId = (ids: Array<number>) => {
+    let max = ids[0];
+    for (let i = 1; i < ids.length; i++) {
+      if (ids[i] > max) {
+        max = ids[i];
+      }
+    }
+    return max;
+  };
 
   let handleCreateNewAdd = () => {
-    const ids = addresses.map((a)=>a.id);
-    const id = findMaxId(ids) +1;
+    const ids = addresses.map((a) => a.id);
+    const id = findMaxId(ids) + 1;
 
     let addNew = {
-      // id: 10, tý nữa xử lý sao cho nó tự tăng id lên đọc hic 
-  // h đơn giản nhất là tìm cái id lớn nhất, mỗi lâng thêm mới là lấy cái id đó + 1
-  //;e ko bt viết giờ toàn tra anh ạ ;:( logic c)
- id: id,
+      // id: 10, tý nữa xử lý sao cho nó tự tăng id lên đọc hic
+      // h đơn giản nhất là tìm cái id lớn nhất, mỗi lâng thêm mới là lấy cái id đó + 1
+      //;e ko bt viết giờ toàn tra anh ạ ;:( logic c)
+      id: id,
       //alo a còn đó ko anh, e xin lại luồng làm với ạhoir từ đâu dạ từ nút Edit đi anh
       fullName: fullName,
       phone: phone,
       email: email,
+      city: city,
+      district: district,
+      ward: ward,
       address: add,
       addressType: addType,
       statusAddress: '',
@@ -250,54 +279,60 @@ for(let i=1;i<ids.length;i++){
     setAddresses([...addresses, addNew]);
   };
   //này là state mà, nó có mãi là thằng ânyf đâu, trước khi hiện Modal thì nó đã thành cái thằng mình nhấn nút edit rồi
-  let [userForEdit, setUserForEdit] = useState( {
-    id:1,
+  let [userForEdit, setUserForEdit] = useState({
+    id: 1,
     fullName: 'Nguyễn Tuấn Minh',
     phone: '0943123123',
     email: '',
+    city: 'Hà Nội',
+    district: 'Nam Từ Liêm',
+    ward: 'Đại Mỗ',
     address: 'Tầng 66, toà nhà 25T, Đường Hoàng Đạo Thuý, Cầu Giấy, Hà Nội, Hà Nội',
     addressType: 'OFFICE',
     statusAddress: 'mặc định',
   });
-  useEffect(()=>{
+  useEffect(() => {
     // thay đổi fullName dựa theo user cần edit từ từ sếp đến đonaj này sao mình useE nó lên ạ?
     //mình có fake data rồi sao cần thêm 1 đoạn trên hả a, tránh lỗi thôi, lúc đầu nó là {}  thì ko gọi fulName các thứ đc
     //có 1 đoạn trung gian ở đây e chưa hiểu sếp ạ: mình có fullName, userEdit, sao lại thêm FUllName edit, a tưởng fullName kia là dùng bên form tạo mới à đúng r anh ạ; mình ko dùng chung đc hả a, m thích thì dùng chung, nhưng tạo mới thì nó ban đầu là ko có gì chứ tự dưng hiện cái tên ngta lên à nó cho hiện đó a xong mình đi sửa giống ngày trc, chả có ngày trước nào dùng chung cả à đúng là như thế anh ạ
     //ở đoạn này e còn cái ko hiểu là tại sao mình setFullNameEdit kia lại đưa thg userForEdit.fullName mà nó cx hiểu ở đây có mỗi Nguyễn Tuấn minh fullName: 'Nguyễn Tuấn Minh', khi mình tạo mới lại có thể sửa nó được??
     setFullNameEdit(userForEdit.fullName);
-   },[userForEdit])
-   const handleFinishUpdate = ()=>{
+  }, [userForEdit]);
+  const handleFinishUpdate = () => {
     //đây là user sau khi sửa tên
-    const updateUser = {...userForEdit,fullName: fullNameEdit}
+    const updateUser = { ...userForEdit, fullName: fullNameEdit };
     //h thay thế vào list cũ, đọc hàm map, hiểu dược dòng dưới là ok
-    setAddresses(addresses.map((a)=> a.id===updateUser.id?updateUser:a));
+    setAddresses(addresses.map((a) => (a.id === updateUser.id ? updateUser : a)));
     //chạy hàm đóng Modal lại  ok
-   }
+  };
   //tạm thế này, tí nữa tạo cáo class định nghĩa user
 
   //giờ a bảo làm cho nó liên quan đến nhau? giờ sao ta
   //đoạn đấy nó cx khó hiểu nữa tại sao handleEditAdd=(user: any) thêm address??
   // 1 hàm có tham số đầu vào thôi mà, hàm này e nhận ông user nào thì  e setUsserForEdit bằng ông đó
-  let handleEditAdd=(user: any)=>{
+  let handleEditAdd = (user: any) => {
     // xác định user cần edit
-    setUserForEdit(user)
+    setUserForEdit(user);
     //mở modal lên
     toggleModalE();
-  }
-  const [city, setCity] = useState('');
-  const [district, setDistrict] = useState('');
-  const [ward, setWard] = useState('');
-  const handleCityChange = (event: any) => {
-    setCity(event.target.value);
-    // Reset district and ward when city changes
-    setDistrict('');
-    setWard('');
   };
-  const handleDistrictChange = (event: any) => {
-    setDistrict(event.target.value);
-    // Reset ward when district changes
-    setWard('');
-  };
+
+  // Function to handle city change
+const handleCityChange = (event: any) => {
+  const selectedCity = event.target.value;
+  setCity(selectedCity);
+  // Reset district and ward when city changes
+  setDistrict('');
+  setWard('');
+};
+
+// Function to handle district change
+const handleDistrictChange = (event: any) => {
+  const selectedDistrict = event.target.value;
+  setDistrict(selectedDistrict);
+  // Reset ward when district changes
+  setWard('');
+};
 
   return (
     <div className="Polaris-Custom">
@@ -348,11 +383,13 @@ for(let i=1;i<ids.length;i++){
                           }}
                         >
                           <div style={{ display: 'flex', gap: '10px' }}>
-                            <div onClick={()=>{
-                              handleEditAdd(addresses);
+                            <div
+                              onClick={() => {
+                                handleEditAdd(addresses);
 
-                              //cái này có nhấn chơi đâu
-                            }} >
+                                //cái này có nhấn chơi đâu
+                              }}
+                            >
                               <IconEditAddress />
                             </div>
                             <div
@@ -434,70 +471,77 @@ for(let i=1;i<ids.length;i++){
                               </div>
 
                               <div>
-      {/* Thành phố */}
-      <div>
-        <label htmlFor='city'>Thành phố</label>
-        <select id='city' value={city} onChange={handleCityChange}>
-          <option value=''>Chọn thành phố</option>
-          <option value='Hanoi'>Hà Nội</option>
-          <option value='HCMC'>Hồ Chí Minh</option>
-        </select>
-      </div>
+                                {/* Thành phố */}
+                                <div>
+                                  <label htmlFor="city">Thành phố</label>
+                                  <select id="city" value={city} onChange={handleCityChange}>
+                                    <option value="">Chọn thành phố</option>
+                                    <option value="Hanoi">Hà Nội</option>
+                                    <option value="HCMC">Hồ Chí Minh</option>
+                                  </select>
+                                </div>
 
-      {/* Quận */}
-      <div>
-        <label htmlFor='district'>Quận</label>
-        <select id='district' value={district} onChange={handleDistrictChange}>
-          <option value=''>Chọn quận</option>
-          {city === 'Hanoi' && (
-            <>
-              <option value='NamTuLiem'>Nam Từ Liêm</option>
-              <option value='BacTuLiem'>Bắc Từ Liêm</option>
-            </>
-          )}
-          {city === 'HCMC' && (
-            <>
-              <option value='ThuDuc'>Thủ Đức</option>
-              <option value='TanPhu'>Tân Phú</option>
-            </>
-          )}
-        </select>
-      </div>
+                                {/* Quận */}
+                                <div>
+                                  <label htmlFor="district">Quận</label>
+                                  <select
+                                    id="district"
+                                    value={district}
+                                    onChange={handleDistrictChange}
+                                  >
+                                    <option value="">Chọn quận</option>
+                                    {city === 'Hanoi' && (
+                                      <>
+                                        <option value="NamTuLiem">Nam Từ Liêm</option>
+                                        <option value="BacTuLiem">Bắc Từ Liêm</option>
+                                      </>
+                                    )}
+                                    {city === 'HCMC' && (
+                                      <>
+                                        <option value="ThuDuc">Thủ Đức</option>
+                                        <option value="TanPhu">Tân Phú</option>
+                                      </>
+                                    )}
+                                  </select>
+                                </div>
 
-      {/* Phường/Xã */}
-      <div>
-        <label htmlFor='ward'>Phường/Xã</label>
-        <select id='ward' value={ward} onChange={(event) => setWard(event.target.value)}>
-          <option value=''>Chọn phường/xã</option>
-          {/* Populate wards based on selected district */}
-          {district === 'NamTuLiem' && (
-            <>
-              <option value='DaiMo'>Đại Mỗ</option>
-              <option value='TayMo'>Tây Mỗ</option>
-            </>
-          )}
-          {district === 'BacTuLiem' && (
-            <>
-              <option value='CoNhue'>Cổ Nhuế</option>
-              <option value='TayTuu'>Tây Tựu</option>
-            </>
-          )}
-          {district === 'ThuDuc' && (
-            <>
-              <option value='AnKhanh'>An Khánh</option>
-              <option value='AnPhu'>An Phú</option>
-            </>
-          )}
-          {district === 'TanPhu' && (
-            <>
-              <option value='Phuong1'>Phường 1</option>
-              <option value='Phuong2'>Phường 2</option>
-            </>
-          )}
-        </select>
-      </div>
-    </div>
-
+                                {/* Phường/Xã */}
+                                <div>
+                                  <label htmlFor="ward">Phường/Xã</label>
+                                  <select
+                                    id="ward"
+                                    value={ward}
+                                    onChange={(event) => setWard(event.target.value)}
+                                  >
+                                    <option value="">Chọn phường/xã</option>
+                                    {/* Populate wards based on selected district */}
+                                    {district === 'NamTuLiem' && (
+                                      <>
+                                        <option value="DaiMo">Đại Mỗ</option>
+                                        <option value="TayMo">Tây Mỗ</option>
+                                      </>
+                                    )}
+                                    {district === 'BacTuLiem' && (
+                                      <>
+                                        <option value="CoNhue">Cổ Nhuế</option>
+                                        <option value="TayTuu">Tây Tựu</option>
+                                      </>
+                                    )}
+                                    {district === 'ThuDuc' && (
+                                      <>
+                                        <option value="AnKhanh">An Khánh</option>
+                                        <option value="AnPhu">An Phú</option>
+                                      </>
+                                    )}
+                                    {district === 'TanPhu' && (
+                                      <>
+                                        <option value="Phuong1">Phường 1</option>
+                                        <option value="Phuong2">Phường 2</option>
+                                      </>
+                                    )}
+                                  </select>
+                                </div>
+                              </div>
 
                               {/* Địa Điểm chính xác */}
                               <div>
@@ -551,40 +595,108 @@ for(let i=1;i<ids.length;i++){
               </div>
 
               <Frame>
-        <Modal
-          activator={activatorE}
-          open={activeE}
-          onClose={toggleModalE}
-          title="Sửa địa chỉ mới"
-          primaryAction={{
-            content: 'Close',
-            onAction: toggleModalE,
-          }}
-        >
-          <Modal.Section>
-            <LegacyStack vertical>
-              <LegacyStack.Item>
-                <TextContainer>
-                <div>
-                {/* Họ và tên */}
-                <div>
-                    <label htmlFor="">Họ và tên</label>
-                    <input type="text" placeholder='tên' value={fullNameEdit}
-                     onChange={(event) => {
-                        setFullNameEdit(event.target.value)
-                      }}
-          />
-          {/*  */}
-                </div>
-                {/* Nút xử lý  */} 
-                    <Button onClick={handleFinishUpdate} >LƯU CHỈNH SỬA</Button>
-            </div>
-                </TextContainer>
-              </LegacyStack.Item>
-            </LegacyStack>
-          </Modal.Section>
-        </Modal>
-      </Frame>
+                <Modal
+                  activator={activatorE}
+                  open={activeE}
+                  onClose={toggleModalE}
+                  title="Sửa địa chỉ mới"
+                  primaryAction={{
+                    content: 'Close',
+                    onAction: toggleModalE,
+                  }}
+                >
+                  <Modal.Section>
+                    <LegacyStack vertical>
+                      <LegacyStack.Item>
+                        <TextContainer>
+                          <div>
+                            {/* Họ và tên */}
+                            <div>
+                              <label htmlFor="">Họ và tên</label>
+                              <input
+                                type="text"
+                                placeholder="tên"
+                                value={fullNameEdit}
+                                onChange={(event) => {
+                                  setFullNameEdit(event.target.value);
+                                }}
+                              />
+                            </div>
+
+                            <div>
+  {/* Thành phố */}
+  <div>
+    <label htmlFor="city">Thành phố</label>
+    <select id="city" value={city} onChange={handleCityChange}>
+      <option value="">Chọn thành phố</option>
+      <option value="Hà Nội">Hà Nội</option>
+      <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+    </select>
+  </div>
+
+  {/* Quận */}
+  <div>
+    <label htmlFor="district">Quận</label>
+    <select id="district" value={district} onChange={handleDistrictChange}>
+      <option value="">Chọn quận</option>
+      {/* Populate districts based on selected city */}
+      {city === 'Hà Nội' && (
+        <>
+          <option value="Nam Từ Liêm">Nam Từ Liêm</option>
+          <option value="Bắc Từ Liêm">Bắc Từ Liêm</option>
+        </>
+      )}
+      {city === 'Hồ Chí Minh' && (
+        <>
+          <option value="Thủ Đức">Thủ Đức</option>
+          <option value="Tân Phú">Tân Phú</option>
+        </>
+      )}
+    </select>
+  </div>
+
+  {/* Phường/Xã */}
+  <div>
+    <label htmlFor="ward">Phường/Xã</label>
+    <select id="ward" value={ward} onChange={(event) => setWard(event.target.value)}>
+      <option value="">Chọn phường/xã</option>
+      {/* Populate wards based on selected district */}
+      {district === 'Nam Từ Liêm' && (
+        <>
+          <option value="Đại Mỗ">Đại Mỗ</option>
+          <option value="Tây Mỗ">Tây Mỗ</option>
+        </>
+      )}
+      {district === 'Bắc Từ Liêm' && (
+        <>
+          <option value="Cổ Nhuế">Cổ Nhuế</option>
+          <option value="Tây Tựu">Tây Tựu</option>
+        </>
+      )}
+      {district === 'Thủ Đức' && (
+        <>
+          <option value="An Khánh">An Khánh</option>
+          <option value="An Phú">An Phú</option>
+        </>
+      )}
+      {district === 'Tân Phú' && (
+        <>
+          <option value="Phường 1">Phường 1</option>
+          <option value="Phường 2">Phường 2</option>
+        </>
+      )}
+    </select>
+  </div>
+</div>
+                            {/* Nút xử lý  */}
+                            <Button onClick={handleFinishUpdate}>LƯU CHỈNH SỬA</Button>
+                          </div>
+                        </TextContainer>
+                      </LegacyStack.Item>
+                    </LegacyStack>
+                  </Modal.Section>
+                </Modal>
+              </Frame>
             </LegacyCard>
           </Layout.Section>
         </Layout>
