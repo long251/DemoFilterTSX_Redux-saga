@@ -137,3 +137,42 @@
     flex-direction: column;
     align-items: flex-end;
   }
+  //-----------------GIAO DIỆN MÀN AVATAR-------------
+  .AvatarFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .AvatarImage {
+    width: 123.2px;
+    height: 123.2px;
+    border-radius: 50%;
+    overflow: hidden; /* Đảm bảo ảnh không vượt ra khỏi khung */
+  }
+  
+  .IconEditAvatarFrame {
+    margin-top: 10px; /* Để tạo khoảng cách giữa avatar và nút chỉnh sửa */
+  }
+  
+  /* Đảm bảo nút chỉnh sửa ở giữa */
+  .IconEditAvatarFrame div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .AvatarFrame {
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .AvatarImage {
+      width: 80px;
+      height: 80px;
+    }
+  
+    /* Các phần tử khác có thể cần điều chỉnh kích thước, vị trí, vv. */
+  }
+  
