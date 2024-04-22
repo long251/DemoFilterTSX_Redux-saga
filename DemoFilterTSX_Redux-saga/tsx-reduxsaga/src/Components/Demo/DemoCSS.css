@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px; /* Số lượng phần tử hiển thị * kích thước phần tử */
+    margin: 20px auto;
+    position: relative;
+  }
+  
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px; /* Kích thước phần tử */
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  
+  .name {
+    margin-top: 5px;
+  }
+  
+  .prevButton,
+  .nextButton {
+    padding: 8px 16px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-10%);
+    z-index: 1; /* Đặt z-index cao hơn để nút hiển thị trên phần tử danh sách */
+  }
+  
+  .prevButton {
+    left: 0;
+  }
+  
+  .nextButton {
+    right: 0;
+  }
+  
