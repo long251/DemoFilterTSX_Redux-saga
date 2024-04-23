@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.item {
+  width: 128px;
+  height: 128px;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 32px;
+}
+
+.name {
+  margin-top: 8px;
+}
+
+.prevButton,
+.nextButton {
+  background-color: #DFE3E9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  background-color: #CDD3DB;
+}
