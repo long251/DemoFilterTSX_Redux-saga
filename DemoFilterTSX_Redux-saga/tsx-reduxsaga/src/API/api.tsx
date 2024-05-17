@@ -12,7 +12,6 @@ const axiosClient = axios.create({
 export const api = (method: any, endpoint: any, payload: any) => {
   return axiosClient(endpoint, { method: method, data: payload })
     .then((response) => {
-      //   console.log("api");
       return response.data;
     })
     .catch((error) => {
